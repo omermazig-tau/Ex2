@@ -122,4 +122,9 @@ def policy_iteration(mdp, gamma, nIt):
 
 
 Vs_PI, pis_PI = policy_iteration(mdp, gamma=0.95, nIt=20)
-plt.plot(Vs_PI);
+plt.xlabel("Iteration")
+plt.ylabel("Reward for state")
+lineObjects = plt.plot(Vs_PI)
+plt.legend(lineObjects, range(16), loc='center left', bbox_to_anchor=(1, 0.5))
+plt.savefig("Value Iteration - Reward as function of Iteration for each state")
+plt.show()
