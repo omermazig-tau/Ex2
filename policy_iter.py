@@ -85,7 +85,13 @@ print("Policy Value: ", actual_val)
 # Programing Question No. 2, part 2 - implement where required.
 
 def compute_qpi(vpi, mdp, gamma):
-    Qpi = np.zeros([mdp.nS, mdp.nA]) # REPLACE THIS LINE WITH YOUR CODE
+    Qpi = np.zeros([mdp.nS, mdp.nA])
+    for state in range(mdp.nS):
+        for action in range(mdp.nA):
+            action_reward = sum((prob * (reward + gamma * vpi[next_state])
+                                 for prob, next_state, reward in mdp.P[state][action]))
+            Qpi[state][action] = action_reward
+
     return Qpi
 
 Qpi = compute_qpi(np.arange(mdp.nS), mdp, gamma=0.95)
