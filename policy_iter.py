@@ -110,6 +110,8 @@ def policy_iteration(mdp, gamma, nIt):
     print("----------+---------------+---------")
     for it in range(nIt):
         # YOUR CODE HERE
+        vpi = compute_vpi(pi_prev, mdp, gamma)
+        qpi = compute_qpi(vpi, mdp, gamma)
         # you need to compute qpi which is the state-action values for current pi
         pi = qpi.argmax(axis=1)
         print("%4i      | %6i        | %6.5f"%(it, (pi != pi_prev).sum(), vpi[0]))
