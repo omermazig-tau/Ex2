@@ -89,8 +89,8 @@ def value_iteration(mdp, gamma, nIt):
             max_action = None
 
             for action in range(mdp.nA):
-                action_reward = sum([prob*(reward + gamma*Vprev[next_state])
-                                     for prob, next_state, reward in mdp.P[state][action]])
+                action_reward = sum((prob*(reward + gamma*Vprev[next_state])
+                                     for prob, next_state, reward in mdp.P[state][action]))
                 if action_reward > max_reward:
                     max_reward = action_reward
                     max_action = action
