@@ -59,7 +59,23 @@ print("")
 
 def compute_vpi(pi, mdp, gamma):
     # use pi[state] to access the action that's prescribed by this policy
-    V = np.ones(mdp.nS) # REPLACE THIS LINE WITH YOUR CODE
+
+    A = np.empty(shape=(mdp.nS, mdp.nS))
+    b = np.empty(shape=(mdp.nS, ))
+    for state in range(mdp.nS):
+        action = pi[state]
+        vec_a = np.zeros(mdp.nS)
+        scalar_b = 0
+        # Build {state}'th equation
+        vec_a[state] += 1
+        for prob, next_state, reward in mdp.P[state][action]:
+            scalar_b += prob * reward
+            vec_a[next_state] -= prob*gamma
+        # Set equation in final A matrix and b vector for the linear solution
+        A[state] = vec_a
+        b[state] = scalar_b
+    # Solve {mdp.nS} equations with {mdp.nS} variables
+    V = np.linalg.solve(A, b)
     return V
 
 actual_val = compute_vpi(np.arange(16) % mdp.nA, mdp, gamma=GAMMA)
