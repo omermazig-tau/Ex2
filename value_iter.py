@@ -123,7 +123,7 @@ for state in range(mdp.nS):
 plt.xlabel("Iteration")
 plt.ylabel("Reward for state")
 plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-plt.savefig("Value Iteration - Reward as function of Iteration for each state")
+# plt.savefig("Value Iteration - Reward as function of Iteration for each state")
 
 for i, (V, pi) in enumerate(zip(Vs_VI[:10], pis_VI[:10])):
     plt.figure(figsize=(3,3))
@@ -147,7 +147,7 @@ for i, (V, pi) in enumerate(zip(Vs_VI[:10], pis_VI[:10])):
     plt.grid(color='b', lw=2, ls='-')
     title = f"Iteration={i}"
     plt.title(title)
-    plt.savefig(title)
+    # plt.savefig(title)
 
 
 plt.show()
